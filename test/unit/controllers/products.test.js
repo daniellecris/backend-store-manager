@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const {expect} = require('chai');
 const productsService = require('../../../services/productsService');
 const productsController = require('../../../controllers/productsController');
-const { json } = require('body-parser');
+// const { json } = require('body-parser');
 
 describe('Verificando no caminho /products, se todos produtos retornam', () => {
   const req = {};

@@ -5,14 +5,14 @@ const salesService = require('../../../services/salesService');
 
 describe('Verificando no caminho /sales, se retornam as vendas', () => {
   before(() => {
-    const sales = [[
+    const sales = [
       {
         saleId: 1,
         date: '2021-09-09T04:54:29.000Z',
         productId: 1,
         quantity: 2
       }
-    ]];
+    ];
     sinon.stub(salesModel, 'getSalesAll').resolves(sales);
   })
   after(() => {
@@ -35,14 +35,14 @@ describe('Verificando no caminho /sales, se retornam as vendas', () => {
 
 describe('Verificando no caminho /sales/:id,  se retorna a venda', () => {
   before(() => {
-    const sales = [[
+    const sales = [
       {
         saleId: 1,
         date: '2021-09-09T04:54:29.000Z',
         productId: 1,
         quantity: 2
       }
-    ]];
+    ];
     sinon.stub(salesModel, 'getSalesId').resolves(sales);
   })
   after(() => {
@@ -64,7 +64,7 @@ describe('Verificando no caminho /sales/:id,  se retorna a venda', () => {
   })
   it('Caso não exista, retorna erro', async () => {
     sinon.stub(salesModel, 'getSalesId').resolves([]);
-    const [response] = await salesService.getSalesId(5);
+    const response = await salesService.getSalesId(5);
     expect(response).to.be.equal(false);
   })
 });

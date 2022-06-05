@@ -62,7 +62,7 @@ describe('Verificando no caminho /products/:id, se o produto retorna', () => {
   })
   it('Caso não exista, retorna erro', async () => {
     sinon.stub(productsModel, 'getProductsId').resolves([]);
-    const [response] = await productsService.getProductsId(5);
+    const response = await productsService.getProductsId(5);
     expect(response).to.be.equal(false);
   })
 });
