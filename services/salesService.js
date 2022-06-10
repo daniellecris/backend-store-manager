@@ -8,7 +8,13 @@ const getSalesId = async (id) => {
   return result;
 };
 
+const createSales = async (salesId, productId, quantity) => {
+  const [sales] = await salesModel.createSales(salesId, productId, quantity);
+  return sales;
+};
+
 module.exports = {
   getSalesAll,
   getSalesId,
+  createSales,
 };

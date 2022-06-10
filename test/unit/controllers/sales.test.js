@@ -2,7 +2,6 @@ const sinon = require('sinon');
 const {expect} = require('chai');
 const salesService = require('../../../services/salesService');
 const salesController = require('../../../controllers/salesController');
-// const { json } = require('body-parser');
 
 describe('Verificando no caminho /sales, se retornam todas as vendas', () => {
   const req = {};

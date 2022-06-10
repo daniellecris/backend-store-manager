@@ -8,7 +8,28 @@ const getProductsId = async (id) => {
   return result;
 };
 
+const createProduct = async (name, quantity) => {
+  const returnProduct = await productsModel.findProduct(name);
+  const products = await productsModel.createProduct(name, quantity);
+
+  if (returnProduct) {
+    return {
+      status: 400,
+      response: { message: 'Product already exists' },
+    };
+  }
+  return {
+    status: 201,
+    response: {
+      id: products,
+      name,
+      quantity,
+    },
+  };
+}; 
+
 module.exports = {
   getProductsAll,
   getProductsId,
+  createProduct,
 };

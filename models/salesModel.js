@@ -1,3 +1,4 @@
+const { date } = require('joi');
 const connection = require('../db/connection');
 
 const getSalesAll = async () => {
@@ -19,7 +20,25 @@ const getSalesId = async (id) => {
   return returnConnect;
 };
 
+const createSales = async (salesId, productId, quantity) => {
+  const query = 'INSERT INTO StoreManager.sales (date) VALUES (Now())';
+  const [sales] = await connection.execute(query, [date]); 
+
+  const { salesId: id } = sales;
+  console.log(id);
+
+//  const query1 = 'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)';
+    
+    const [salesProducts] = await connection.execute(
+      'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+       [salesId, productId, quantity],
+      );
+      
+    return salesProducts;
+};
+
 module.exports = {
   getSalesAll,
   getSalesId,
+  createSales,
 };
