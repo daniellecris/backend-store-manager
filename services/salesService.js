@@ -20,8 +20,22 @@ const createSales = async (array) => {
   };
 };
 
+const putSalesId = async (saleId, productId, quantity) => {
+  await salesModel.putSalesId(saleId, productId, quantity);
+  return {
+    saleId,
+    itemUpdated: [
+      {
+        productId,
+        quantity,
+      },
+    ],
+  };
+};
+
 module.exports = {
   getSalesAll,
   getSalesId,
   createSales,
+  putSalesId,
 };

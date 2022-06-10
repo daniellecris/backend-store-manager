@@ -9,7 +9,7 @@ const { validateSalesId, validateQuantity, validate } = require('../middlewares/
 router.get('/', salesController.getSalesAll);
 router.get('/:id', salesController.getSalesId);
 router.post('/', validateSalesId, validateQuantity, validate, salesController.createSales);
-router.put('/:id', validateSalesId, validateQuantity, validate);
+router.put('/:id', salesController.putSalesId);
 router.delete('/:id');
 
 module.exports = router;
