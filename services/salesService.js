@@ -33,9 +33,18 @@ const putSalesId = async (saleId, productId, quantity) => {
   };
 };
 
+const deleteSalesId = async (id) => {
+  const idReturn = await getSalesId(id);
+
+  if (!idReturn) return null;
+
+  return salesModel.deleteSalesId(id);
+};
+
 module.exports = {
   getSalesAll,
   getSalesId,
   createSales,
   putSalesId,
+  deleteSalesId,
 };
