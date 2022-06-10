@@ -31,10 +31,15 @@ const putProductId = async (id, name, quantity) => {
   return updateProduct;
 };
 
+const deleteProductId = (id) => {
+  connection.execute('DELETE FROM StoreManager.products WHERE id=?', [id]);
+};
+
 module.exports = {
   getProductsAll,
   getProductsId,
   findProduct,
   createProduct,
   putProductId,
+  deleteProductId,
 };

@@ -41,9 +41,18 @@ const putProductId = async (id, name, quantity) => {
   };
 };
 
+const deleteProductId = async (id) => {
+  const idReturn = await getProductsId(id);
+
+  if (!idReturn) return null;
+
+  return productsModel.deleteProductId(id);
+};
+
 module.exports = {
   getProductsAll,
   getProductsId,
   createProduct,
   putProductId,
+  deleteProductId,
 };
