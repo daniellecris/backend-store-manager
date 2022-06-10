@@ -8,9 +8,16 @@ const getSalesId = async (id) => {
   return result;
 };
 
-const createSales = async (salesId, productId, quantity) => {
-  const [sales] = await salesModel.createSales(salesId, productId, quantity);
-  return sales;
+const createSales = async (array) => {
+  const { id } = await salesModel.createSales();
+
+  array.forEach(({ productId, quantity }) => {
+    salesModel.salesProducts(id, productId, quantity);
+  });
+  return {
+    id,
+    itemsSold: array,
+  };
 };
 
 module.exports = {

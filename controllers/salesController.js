@@ -14,9 +14,9 @@ const getSalesId = async (req, res) => {
 };
 
 const createSales = async (req, res) => {
-  const { product_id, quantity } = req.body;
-  const { status, response } = await salesService.createSales(product_id, quantity);
-  return res.status(status).json(response);
+  const array = req.body;
+  const result = await salesService.createSales(array);
+  return res.status(201).json(result);
 };
 
 module.exports = {

@@ -20,25 +20,24 @@ const getSalesId = async (id) => {
   return returnConnect;
 };
 
-const createSales = async (salesId, productId, quantity) => {
-  const query = 'INSERT INTO StoreManager.sales (date) VALUES (Now())';
-  const [sales] = await connection.execute(query, [date]); 
+const createSales = async () => {
+  const query = 'INSERT INTO StoreManager.sales (date) VALUES (NOW())';
+  const [sales] = await connection.execute(query); 
 
-  const { salesId: id } = sales;
-  console.log(id);
+  const idResult = { id: sales.insertId };
+  return idResult;
+};
 
-//  const query1 = 'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)';
-    
-    const [salesProducts] = await connection.execute(
-      'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
-       [salesId, productId, quantity],
-      );
-      
-    return salesProducts;
+const salesProducts = async (id, productId, quantity) => {
+  await connection.execute(
+    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+     [id, productId, quantity],
+    );
 };
 
 module.exports = {
   getSalesAll,
   getSalesId,
   createSales,
+  salesProducts,
 };
