@@ -1,4 +1,3 @@
-const { date } = require('joi');
 const connection = require('../db/connection');
 
 const getSalesAll = async () => {
