@@ -14,7 +14,7 @@ const createProduct = async (name, quantity) => {
 
   if (returnProduct) {
     return {
-      status: 400,
+      status: 409,
       response: { message: 'Product already exists' },
     };
   }
