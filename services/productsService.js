@@ -4,7 +4,7 @@ const getProductsAll = () => productsModel.getProductsAll();
 
 const getProductsId = async (id) => {
   const [result] = await productsModel.getProductsId(id);
-  if (!result) return false;
+  if (!result || result.length === 0) return false;
   return result;
 };
 
@@ -28,8 +28,22 @@ const createProduct = async (name, quantity) => {
   };
 }; 
 
+const putProductId = async (id, name, quantity) => {
+  const idReturn = await getProductsId(id);
+
+  if (!idReturn) return null;
+
+  await productsModel.putProductId(id, name, quantity);
+  return {
+    id,
+    name,
+    quantity,
+  };
+};
+
 module.exports = {
   getProductsAll,
   getProductsId,
   createProduct,
+  putProductId,
 };
